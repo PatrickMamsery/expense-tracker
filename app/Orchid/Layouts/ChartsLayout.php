@@ -11,7 +11,7 @@ class ChartsLayout extends Chart
      *
      * @var string
      */
-    protected $title = 'Super Chart';
+    protected $title = 'Incomes & Expenses';
 
     /**
      * Available options:
@@ -20,7 +20,7 @@ class ChartsLayout extends Chart
      *
      * @var string
      */
-    protected $type = 'line';
+    protected $type = 'bar';
 
     /**
      * Data source.
@@ -30,7 +30,7 @@ class ChartsLayout extends Chart
      *
      * @var string
      */
-    protected $target = 'charts';
+    protected $target = 'chart_data';
 
     /**
      * Determines whether to display the export button.
@@ -40,7 +40,7 @@ class ChartsLayout extends Chart
     protected $export = true;
 
     //height
-     protected $height = 600;
+     protected $height = 500;
 
      //color
      protected $colors = [

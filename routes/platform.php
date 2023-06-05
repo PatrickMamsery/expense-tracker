@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\Examples\ExampleCardsScreen;
-use App\Orchid\Screens\Examples\ExampleChartsScreen;
-use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
-use App\Orchid\Screens\Examples\ExampleFieldsScreen;
-use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
-use App\Orchid\Screens\Examples\ExampleScreen;
-use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+
 use App\Orchid\Screens\FAQs\FAQsEditScreen;
 use App\Orchid\Screens\FAQs\FAQsListScreen;
 use App\Orchid\Screens\News\NewsEditScreen;
 use App\Orchid\Screens\News\NewsListScreen;
+use App\Orchid\Screens\Category\CategoryListScreen;
+use App\Orchid\Screens\Incomes\IncomeEditScreen;
+use App\Orchid\Screens\Incomes\IncomeListScreen;
+use App\Orchid\Screens\Expenses\ExpenseEditScreen;
+use App\Orchid\Screens\Expenses\ExpenseListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -106,7 +105,7 @@ Route::screen('news', NewsListScreen::class)
             ->push(__('News'),route('platform.news'));
     });
 
-// Home > news > edit 
+// Home > news > edit
 Route::screen('news-edit/{news?}', NewsEditScreen::class)
     ->name('platform.news.edit')
     ->breadcrumbs(function(Trail $trail){
@@ -133,5 +132,55 @@ Route::screen('faq/{faq?}', FAQsEditScreen::class)
         return $trail
             ->parent('platform.faqs')
             ->push(__('Edit'), route('platform.faqs.faq'));
+    });
+
+// Incomes
+
+// Home > Incomes
+Route::screen('Incomes', IncomeListScreen::class)
+    ->name('platform.incomes')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.index')
+            ->push(__('Incomes'),route('platform.incomes'));
+    });
+
+// Home > Incomes > Edit
+Route::screen('income/{income?}', IncomeEditScreen::class)
+    ->name('platform.incomes.edit')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.incomes')
+            ->push(__('Edit'), route('platform.incomes.edit'));
+    });
+
+// Expenses
+
+// Home > Expenses
+Route::screen('expenses', ExpenseListScreen::class)
+    ->name('platform.expenses')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.index')
+            ->push(__('Expenses'),route('platform.expenses'));
+    });
+
+// Home > Expenses > Edit
+Route::screen('expense/{expense?}', ExpenseEditScreen::class)
+    ->name('platform.expenses.edit')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.expenses')
+            ->push(__('Edit'), route('platform.expenses.edit'));
+    });
+
+
+// Category
+Route::screen('categories', CategoryListScreen::class)
+    ->name('platform.categories')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.index')
+            ->push(__('Category'), route('platform.categories'));
     });
 
