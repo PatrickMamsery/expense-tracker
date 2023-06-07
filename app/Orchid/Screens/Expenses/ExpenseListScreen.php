@@ -6,6 +6,7 @@ use Orchid\Screen\Screen;
 use App\Models\Expense;
 use Orchid\Screen\Actions\Link;
 use App\Orchid\Layouts\Expenses\ExpenseListLayout;
+use Orchid\Support\Facades\Toast;
 
 class ExpenseListScreen extends Screen
 {
@@ -54,5 +55,18 @@ class ExpenseListScreen extends Screen
         return [
             ExpenseListLayout::class,
         ];
+    }
+
+    public function remove(Expense $expense)
+    {
+        // detach category and user and delete income
+        $expense->category()->dissociate();
+        $expense->user()->dissociate();
+        
+        $expense->delete();
+
+        Toast::info('Expense was removed');
+
+        return redirect()->route('platform.expenses');
     }
 }

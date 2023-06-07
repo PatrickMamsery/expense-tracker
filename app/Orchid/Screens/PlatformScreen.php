@@ -45,7 +45,7 @@ class PlatformScreen extends Screen
         $incomeAmounts = [];
 
         while ($startDate <= $endDate) {
-            $formattedDate = $startDate->format('Y-m');
+            $formattedDate = $startDate->format('M-Y');
             $dates[] = $formattedDate;
 
             $expenseAmount = Expense::whereYear('created_at', $startDate->year)

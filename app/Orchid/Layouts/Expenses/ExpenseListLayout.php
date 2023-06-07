@@ -65,7 +65,7 @@ class ExpenseListLayout extends Table
 
                             Button::make('Delete')
                                 ->method('remove')
-                                ->confirm('Are you sure you want to delete this expense?')
+                                ->confirm('Are you sure you want to delete this expense record?')
                                 ->parameters([
                                     'id' => $expense->id,
                                 ])

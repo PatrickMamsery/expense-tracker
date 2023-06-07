@@ -6,6 +6,7 @@ use Orchid\Screen\Screen;
 use App\Models\Income;
 use Orchid\Screen\Actions\Link;
 use App\Orchid\Layouts\Incomes\IncomeListLayout;
+use Orchid\Support\Facades\Toast;
 
 class IncomeListScreen extends Screen
 {
@@ -54,5 +55,18 @@ class IncomeListScreen extends Screen
         return [
             IncomeListLayout::class
         ];
+    }
+
+    public function remove(Income $income)
+    {
+        // detach category and user and delete income
+        $income->category()->dissociate();
+        $income->user()->dissociate();
+        
+        $income->delete();
+
+        Toast::info(__('Income record was removed'));
+
+        return redirect()->route('platform.incomes');
     }
 }

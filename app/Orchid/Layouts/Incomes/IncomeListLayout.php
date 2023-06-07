@@ -49,7 +49,28 @@ class IncomeListLayout extends Table
 
             TD::make('entry_date', 'Entry Date')
                 ->render(function (Income $income) {
-                    return $income->entry_date;
+                    return $income->entry_date->toFormattedDateString();
+                }),
+
+            TD::make('actions', 'Actions')
+                ->align(TD::ALIGN_CENTER)
+                ->width('100px')
+                ->render(function (Income $income) {
+                    return DropDown::make()
+                        ->icon('options-vertical')
+                        ->list([
+                            Link::make('Edit')
+                                ->route('platform.incomes.edit', $income)
+                                ->icon('pencil'),
+
+                            Button::make('Delete')
+                                ->method('remove')
+                                ->confirm('Are you sure you want to delete this income record?')
+                                ->parameters([
+                                    'id' => $income->id,
+                                ])
+                                ->icon('trash')
+                        ]);
                 })
         ];
     }
